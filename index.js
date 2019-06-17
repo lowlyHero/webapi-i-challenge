@@ -88,6 +88,28 @@ server.delete('/users/:id', (req, res) => {
     })
 })
 
+//=========== PUT ===================
+
+server.put('/users/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+
+    db.update(id, changes)
+    .then(updated => {
+        if(updated) {
+            res.status(200).json({
+                success: true,
+                updated
+            })
+        } else {
+            res.status(404).json({
+                success: false,
+                message: 'The user with the specified ID does not exist.'
+            })
+        }
+    })
+})
+
 server.listen(4000, () => {
     console.log('\n*** Server is running on port 4000 ***\n');
 });
