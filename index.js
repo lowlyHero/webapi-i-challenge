@@ -42,6 +42,12 @@ server.get('/users', (req, res) => {
              })
          }
      })
+     .catch(err => {
+        res.status(500).json({
+            success: false,
+            err
+        })
+     })
  })
 
 //========== POST =================
@@ -83,7 +89,7 @@ server.delete('/users/:id', (req, res) => {
     .catch(err => {
         res.status(500).json({
             success: false,
-            err
+            message: 'The user could not be removed'
         })
     })
 })
@@ -107,6 +113,12 @@ server.put('/users/:id', (req, res) => {
                 message: 'The user with the specified ID does not exist.'
             })
         }
+    })
+    .catch(err => {
+        res.status(500).json({
+            success: false,
+            err
+        })
     })
 })
 
