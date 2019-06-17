@@ -55,7 +55,7 @@ server.get('/users', (req, res) => {
 server.post('/users', (req,res) => {
     const userInfo = req.body;
 
-    db.add(userInfo)
+    db.insert(userInfo)
     .then(users => {
         res.status(201).json({
             success: true,
