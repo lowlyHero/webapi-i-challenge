@@ -5,7 +5,6 @@ const db = require('./data/db');
 
 server.use(express.json());
 
-
 //========== GET ================
 
 server.get('/', (req, res) => {
@@ -28,7 +27,7 @@ server.get('/users', (req, res) => {
  server.get('/users/:id', (req, res) => {
      const { id } = req.params;
 
-     db.findById(req.params.id)
+     db.findById(id)
      .then(user => {
          if(user) {
              res.status(200).json({
